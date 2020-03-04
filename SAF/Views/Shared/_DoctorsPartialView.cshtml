@@ -1,0 +1,18 @@
+﻿
+@{
+    @model IEnumerable<Doctor>
+    Layout = null;
+}
+
+
+@foreach (var d in Model)
+{
+    <input type="hidden" class="update-model-id" value="@d.Id"/>
+    <tr>
+        <td>@d.FullName</td>
+        <td>@d.Profession</td>
+        <td>@d.WorkPlace</td>
+        <td>@d.Region</td>
+        <td>@d.MobileNumber</td>
+    </tr>
+}

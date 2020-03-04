@@ -1,0 +1,27 @@
+﻿
+@{
+    @model IEnumerable<SendSms>
+    Layout = null;
+}
+
+@foreach (var m in Model)
+{
+    <tr data-toggle="modal" data-target="#myModal">
+        <td style="display:none">
+            <p>@m.Text</p>
+        </td>
+        <td>@m.Subject</td>
+        <td>@m.Number</td>
+        <td>@m.Date</td>
+        <td>
+            @if (m.Status)
+            {
+                <img src="~/images/error.svg" alt="">
+            }
+            else
+            {
+                <img src="~/images/error.png" alt="">
+            }
+        </td>
+    </tr>
+}

@@ -1,0 +1,186 @@
+﻿
+@{
+    @model IEnumerable<Doctor>
+    ViewData["Title"] = "Index";
+}
+
+<div class="right-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="myBtn text-left">
+                   
+                    <a href="#" class="btn-all-add" data-toggle="modal" data-target="#myModal">HƏKİM ƏLAVƏ ET</a>
+                    <a href="#" class="btn-all-update" data-toggle="modal" data-target="#updateModal" onclick="GetUpdate()">REDAKTƏ ET</a>
+                    <a href="#" class="btn-all-delete" data-toggle="modal" data-target="#deleteModal">SİL</a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog" style="max-width: 350px;">
+
+                            <!-- Modal content-->
+                            <div class="modal-content" style="padding: 0px 20px;">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-center" style="width: 100%;">HƏKİM ƏLAVƏ ET</h5>
+                                    <button type="button" class="close-btn" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body pb-5 custom-modal update-model-body">
+                                    <partial name="_CreateDoctorPartialView" model="new Doctor()"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal fade" id="updateModal" role="dialog">
+                        <div class="modal-dialog" style="max-width: 350px;">
+                            
+                            <!-- Modal content-->
+                            <div class="modal-content" style="padding: 0px 20px;">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-center" style="width: 100%;">REDAKTE ET</h5>
+                                    <button type="button" class="close-btn" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body pb-5 custom-modal custom-modal-update">
+                                    <partial name="_UpdateDoctorPartialView" model="Model.FirstOrDefault()"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal fade" id="deleteModal" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content" style="padding: 0px 20px;">
+                                <div class="modal-body custom-modal" style="padding: 20px 0;">
+                                    <p style="width: 100%; text-align: center;">
+                                        SEÇİLƏN BÖLMƏNİ SİLMƏKDƏN
+                                        ƏMİNSİNİZMİ ?
+                                    </p>
+                                    <div class="buttons-modal">
+                                        <a  href="#" class="btn-all-yes"  onclick="DeleteDoctor()" data-dismiss="modal">BƏLİ</a>
+                                        <a href="#" class="btn-all-no" data-dismiss="modal">XEYR</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 d-flex justify-content-end">
+                <div class="search-btn">
+                    <input type="text" placeholder="AXTARIŞ ET">
+                    <div class="image-search">
+                        <img src="~/images/Group 11.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">HƏKİMİN ADI/SOYADI</th>
+                            <th scope="col">HƏKİMİN PEŞƏSİ</th>
+                            <th scope="col">İŞLƏDİYİ YER</th>
+                            <th scope="col">BÖLGƏ</th>
+                            <th scope="col">ƏLAQƏ NÖMRƏSİ</th>
+                        </tr>
+                    </thead>
+                    <tbody class="update-body">
+                        <partial name="_DoctorsPartialView" model="Model" />
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-6">
+                <div class="row-count">
+                    <p>SƏTİRLƏRİN SAYI: 12</p>
+                </div>
+            </div>
+            <div class="col-6 d-flex justify-content-end">
+                <div class="nav-pagination">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination" id="pagination"></ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+
+    double result = ViewBag.Count / 10;
+    var a = ViewBag.Count % 10;
+    if (a != 0)
+    {
+        result++;
+    }
+    if (result == 0)
+    {
+        result = 1;
+    }
+}
+
+@section Scripts{
+    <script type="text/javascript">
+    $(function () {
+        window.pagObj = $('#pagination').twbsPagination({
+            totalPages: @result,
+            visiblePages: 6,
+            prev: "ƏVVƏL",
+            next: "SONRA",
+            first: false,
+            last: false,
+            onPageClick: function (event, page) {
+                event.preventDefault();
+                 $.ajax({
+                     url: "/AJAX/LoadDoctors?skip=" + (page - 1) * 10,
+                     type: "GET",
+                     success: function (res) {
+                         $("table tbody").html(res);
+                     }
+                 });
+            }
+        })
+    });
+        function GetUpdate() {
+        var doctorId = +$(".update-body tr.active-tr").prev().val();
+        $.ajax({
+            url: "/Doctor/Update?id=" + doctorId,
+            type: "GET",
+            success: function (res) {
+                $(".custom-modal-update").html(res);
+            }
+        });
+        }
+
+        
+    function DeleteDoctor() {
+           
+        var id = +$(".update-body tr.active-tr").prev().val();
+        $.ajax({
+            type: "POST",
+            url: "/Doctor/DeleteDoctor?id=" + id,
+            success: function (d) {
+                $.ajax({
+                    type: "Get",
+                    url: "/Doctor/Index",
+                    success: function (d) {
+                        $(".update-body").html(d);
+                    },
+                });
+            },
+            error: function (a) {
+                //do something
+                console.log(a);
+            }
+             });
+        };
+    
+    </script>
+
+}
+

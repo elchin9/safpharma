@@ -1,0 +1,26 @@
+﻿
+@{
+    @model Doctor
+    Layout = null;
+}
+
+
+<form method="post" asp-controller="Doctor" asp-action="Create">
+
+    <input type="text" placeholder="HƏKİMİN ADI/SOYADI" asp-for="FullName">
+    <span asp-validation-for="FullName" class="text-danger"></span>
+
+    <input type="text" placeholder="HƏKİMİN PEŞƏSİ" asp-for="Profession">
+    <span asp-validation-for="Profession" class="text-danger"></span>
+
+    <input type="text" placeholder="İŞLƏDİYİ YER" asp-for="WorkPlace">
+    <span asp-validation-for="WorkPlace" class="text-danger"></span>
+
+    <input type="text" placeholder="BÖLGƏ" asp-for="Region">
+    <span asp-validation-for="Region" class="text-danger"></span>
+
+    <input type="text" placeholder="ƏLAQƏ NÖMRƏSİ" asp-for="MobileNumber">
+    <span asp-validation-for="MobileNumber" class="text-danger"></span>
+
+    <input type="submit" value="ƏLAVƏ ET" class="btn-save-update">
+</form>

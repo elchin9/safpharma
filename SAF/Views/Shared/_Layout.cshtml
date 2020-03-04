@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/bootstrap-4.3.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+
+<body>
+
+
+    <div class="left-wrapper">
+        <div class="icon-left">
+            <img src="~/images/Component 53 – 12.svg" alt="">
+        </div>
+        <div class="dashboard-logo">
+            <a asp-controller="Home" asp-action="Index">
+                <img src="~/images/saffarma-logo.png" alt="">
+            </a>
+        </div>
+        <div class="menu">
+            <ul class="menu-icons">
+                <li>
+                    <a asp-controller="Home" asp-action="Index">
+                        <div class="img-icon @((ViewBag.Active == "Home") ? "active-icon" :  " " )">
+                            <img src="~/images/Path 189.svg" alt="">
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="SendSms" asp-action="Index">
+                        <div class="img-icon @((ViewBag.Active == "SendSms") ? "active-icon" :  " " )">
+                            <img src="~/images/send-mail.svg" alt="">
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="Send">
+                        <div class="img-icon @((ViewBag.Active == "Send") ? "active-icon" :  " " )">
+                            <img src="~/images/sms.svg" alt="">
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Doctor" asp-action="Index">
+                        <div class="img-icon @((ViewBag.Active == "Doctors") ? "active-icon" :  " " )">
+                            <img src="~/images/doctor.svg" alt="">
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Account" asp-action="Logout">
+                        <div class="img-icon">
+                            <img src="~/images/logout.svg" alt="">
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <ul class="menu-words">
+                <li class="@((ViewBag.Active == "Home") ? "active" :  " " )">
+                    <a asp-controller="Home" asp-action="Index">Əsas Səhifə</a>
+                </li>
+                <li class="@((ViewBag.Active == "SendSms") ? "active" :  " " )">
+                    <a asp-controller="SendSms" asp-action="Index">SMS Göndər</a>
+                </li>
+                <li class="@((ViewBag.Active == "Send") ? "active" :  " " )">
+                    <a asp-controller="Home" asp-action="Send">Göndərilənlər</a>
+                </li>
+                <li class="@((ViewBag.Active == "Doctors") ? "active" :  " " )">
+                    <a asp-controller="Doctor" asp-action="Index">Həkimlər</a>
+                </li>
+                <li>
+                    <a asp-controller="Account" asp-action="Logout">Çıxış</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    @RenderBody()
+
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/jquery.twbsPagination.js"></script>
+    <script src="~/bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+    <script src="~/js/main.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+
+</html>

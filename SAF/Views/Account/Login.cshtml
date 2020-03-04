@@ -1,0 +1,71 @@
+﻿
+@{
+    @model LoginViewModel
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/reset.css">
+    <link rel="stylesheet" href="~/https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/bootstrap-4.3.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="login-container">
+                    <div class="logo">
+                        <img src="~/images/saffarma-logo.png" alt="">
+                    </div>
+                    <div class="login-wrapper">
+                        <div class="login-logo">
+                            <img src="~/images/User icon.svg" alt="">
+                        </div>
+                        <div class="login">
+                            <form method="post">
+                                <div class="form-login mt-5">
+                                    <div class="icon">
+                                        <img src="~/images/user (3).svg" alt="">
+                                    </div>
+                                    <input type="text" placeholder="İstifadəçi Adı" asp-for="Email">
+                                </div>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                                <div class="form-login">
+                                    <div class="icon">
+                                        <img src="~/images/lock.svg" alt="">
+                                    </div>
+                                    <input placeholder="Şifrə" asp-for="Password">
+                                </div>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <div class="check">
+                                    <label class="checking">
+                                        <input type="checkbox" asp-for="RememberMe">
+                                        <span class="checkmark"></span>
+                                        <p>Məni yadda saxla</p>
+                                    </label>
+                                    <div class="right-check">
+                                        <p>Şifrəmi unutdum</p>
+                                    </div>
+                                </div>
+                                <input type="submit" value="DAXIL OL" id="enter">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/js/jquery.js"></script>
+    <script src="~/bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+    <script src="~/js/main.js"></script>
+</body>
+</html>

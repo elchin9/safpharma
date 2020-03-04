@@ -1,0 +1,79 @@
+﻿@{
+    @model HomeViewModel
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="right-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="text-left">SON GÖNDƏRİLƏNLƏR</p>
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">SMS Başlığı</th>
+                            <th scope="col">Həkim Sayı</th>
+                            <th scope="col">Tarix</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var m in Model.Messages)
+                        {
+                            <tr>
+                                <td>@m.Subject</td>
+                                <td>@m.Number</td>
+                                <td>@m.Date</td>
+                                <td>
+                                    @if (m.Status)
+                                    {
+                                        <img src="~/images/error.svg" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/error.png" alt="">
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="myBtn text-left">
+                    <a asp-controller="Home" asp-action="Send" class="btn-all">HAMISINA BAX</a>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <p class="text-left">SON ƏLAVƏ OLUNAN HƏKİMLƏR</p>
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">HƏKİMİN ADI/SOYADI</th>
+                            <th scope="col">HƏKİMİN PEŞƏSİ</th>
+                            <th scope="col">İŞLƏDİYİ YER</th>
+                            <th scope="col">BÖLGƏ</th>
+                            <th scope="col">ƏLAQƏ NÖMRƏSİ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var d in Model.Doctors)
+                        {
+                        <tr>
+                            <td>@d.FullName</td>
+                            <td>@d.Profession</td>
+                            <td>@d.WorkPlace</td>
+                            <td>@d.Region</td>
+                            <td>@d.MobileNumber</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="myBtn text-left">
+                    <a asp-controller="Doctor" asp-action="Index" class="btn-all">HAMISINA BAX</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

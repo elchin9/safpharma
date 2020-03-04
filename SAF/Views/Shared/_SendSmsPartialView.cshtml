@@ -1,0 +1,26 @@
+﻿
+@{
+    @model IEnumerable<Doctor>
+    Layout = null;
+}
+
+
+@foreach (var d in Model)
+{
+    <tr>
+        <input type="hidden" value="@d.Id" class="doctorId"/>
+        <td>
+            <input type="checkbox">
+
+            @*<label class="container-check">
+            <input type="checkbox">
+            <span class="checkmark-two"></span>
+        </label>*@
+        </td>
+        <td>@d.FullName</td>
+        <td>@d.Profession</td>
+        <td>@d.WorkPlace</td>
+        <td>@d.Region</td>
+        <td>@d.MobileNumber</td>
+    </tr>
+}

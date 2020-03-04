@@ -1,0 +1,443 @@
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    flex-wrap: wrap;
+}
+.login-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 450px;
+    padding: 20px;
+    border: 1px solid #DFDFDF;
+    border-radius: 15px;
+}
+.modal-body p{
+    word-break: break-all;
+}
+form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.form-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #DFDFDF;
+    padding: 10px;
+    width: 80%;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+.icon{
+    margin: 0 10px;
+}
+input{
+    width: 100%;
+    border: none;
+}
+input:focus,
+input:hover{
+    outline: 0 none;
+    border:transparent;
+}
+#enter{
+    background-color: #E5007C;
+    border-radius: 15px;
+    width: 80%;
+    color: white;
+    padding: 15px 0;
+    margin-top: 20px;
+}
+.login-logo{
+    position: absolute;
+    left: 50%;
+    top: -50px;
+    transform: translateX(-50%);
+    z-index: 2;
+    border-radius: 50%;
+    border: 1px solid #DFDFDF;
+    padding: 20px;
+    background-color: white;
+}
+.login-logo img{
+    width: 50px;
+    height: 50px;
+}
+.check{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-top: 20px;
+}
+
+/* The container */
+.checking {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-top: 10px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .checking input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border: 1px solid #E5007C;
+  }
+  
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .checking input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .checking .checkmark:after {
+    left: 5px;
+    top: 0px;
+    width: 8px;
+    height: 15px;
+    border: solid #E5007C;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .check p{
+      font-size: 15px;
+  }
+
+  .left-wrapper{
+      width: 300px;
+      height: 100vh;
+      position: fixed;
+      background-color: #F9F9F9;
+      text-align: center;
+  }
+  .dashboard-logo{
+      margin-top: 30px;
+  }
+.menu{
+    width: 100%;
+    margin-top: 30px;
+}
+.menu ul li a{
+    color: #A1A1A1;
+    text-transform: uppercase;
+    padding: 5px 0;
+}
+.menu ul li{
+    margin-top: 20px;
+}
+.menu ul li a:hover{
+    color: #E5007C;
+    text-decoration: none;
+}
+.menu ul li.active a{
+    color: #E5007C;
+    border-bottom: 1px solid #E5007C;
+}
+.icon-left{
+    position: absolute;
+    right: -25px;
+    top: 10px;
+    cursor: pointer;
+}
+.dashboard-logo.mini-logo img{
+    width: 50px;
+    object-fit: cover;
+}
+.menu-icons a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.menu-icons li a .img-icon{
+    width: 50px;
+    height: 50px;
+    border: 1px solid #A1A1A1;
+    border-radius: 50%;
+    padding: 10px;
+}
+.menu-icons li a .img-icon:hover{
+    border: 1px solid #E5007C;
+}
+.menu-icons li a .img-icon.active-icon{
+    border: 1px solid #E5007C;
+}
+.menu-icons{
+    display: none;
+}
+.right-wrapper{
+    padding: 80px 0px 80px 340px;
+}
+.btn-all{
+    background-color: #E5007C;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+a:hover{
+    text-decoration: none;
+    color:white;
+}
+.right-wrapper p{
+    font-size: 15px;
+}
+.container-check {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  /* Hide the browser's default checkbox */
+  .container-check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark-two {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    border: 1px solid #A1A1A1;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container-check:hover input ~ .checkmark-two {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container-check input:checked ~ .checkmark-two {
+    background-color: #2196F3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark-two:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  tbody input{
+      width: 50px;
+  }
+  
+  /* Show the checkmark when checked */
+  .container-check input:checked ~ .checkmark-two:after {
+    display: block;
+  }
+
+  /* Style the checkmark/indicator */
+  .container-check .checkmark-two:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .search-btn{
+      padding: 5px 20px;
+      border: 1px solid #A1A1A1;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70%;
+  }
+  .search-btn .image-search{
+      background-color: #E5007C;
+      border-radius: 50%;
+      width: 29px;
+      height: 27px;
+      padding-left: 4px;
+      cursor: pointer;
+  }
+  .page-item.active .page-link{
+      background-color: #E5007C;
+      border-color: #E5007C;
+  }
+  .page-link{
+      color: #E5007C;
+  }
+  .page-item.disabled .page-link{
+      color: #6c757d;
+  }
+  .custom-modal-doctor textarea{
+      margin-top: 10px;
+      width: 100%;
+      border:none;
+      background-color: #FBFBFB;
+      padding: 10px;
+      border-bottom :1px solid #DFDFDF;
+      border-radius: 15px;
+  }
+  .custom-modal input:first-child{
+      background-color: #FBFBFB;
+      padding: 10px;
+      border-bottom :1px solid #DFDFDF;
+      border-radius: 15px;
+  }
+  .custom-modal input:last-child{
+      background-color: #E5007C;
+      border-radius: 10px;
+      width: 30%;
+      margin-top: 20px;
+      padding: 10px 20px;
+      color: white;
+  }
+  .custom-modal-doctor input:first-child{
+    background-color: #FBFBFB;
+    padding: 10px;
+    border-bottom :1px solid #DFDFDF;
+    border-radius: 15px;
+}
+.custom-modal-doctor input:last-child{
+    background-color: #E5007C;
+    border-radius: 10px;
+    width: 30%;
+    margin-top: 20px;
+    padding: 10px 20px;
+    color: white;
+}
+  .modal-header h5{
+      color: #E5007C;
+  }
+  .close-btn{
+      background-color: white;
+      border: 1px solid #E5007C;
+      color: #E5007C;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+  }
+  .modal-dialog{
+    margin: 5.75rem auto;
+  }
+  .btn-all-add{
+    background-color: #33B5E5;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-right: 10px;
+}
+.btn-all-update{
+    background-color: #7BCFEE;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-right: 10px;
+}
+.btn-all-delete{
+    background-color: #FF7C88;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+.modal-body.custom-modal input{
+    background-color: white;
+    border-radius: 0 ;
+    border-bottom: 1px solid #A1A1A1;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+input.btn-save-update{
+    background-color: #E5007C !important;
+      border-radius: 10px !important;
+      width: 100% !important;
+      margin-top: 20px !important;
+      padding: 10px 20px !important;
+      color: white !important;
+}
+.btn-all-yes{
+    background-color: #FF7C88;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 40px;
+}
+.btn-all-no{
+    background-color: #4285F4;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 40px;
+}
+.buttons-modal{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttons-modal a{
+    margin: 0 10px;
+}
+.active-tr{
+    background-color: #FFDFDF;
+}
+.update-body tr:hover{
+    background-color: #FFDFDF;
+}
+.click-tbody tr:hover{
+    background-color: #F9F9F9;
+    color: #E5007C;
+}
