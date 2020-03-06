@@ -25,6 +25,11 @@ namespace SAF.Controllers
 
         public async Task<IActionResult> SendSms(string header, string body, int[] doctors)
         {
+
+            if(header == null || body == null || doctors == null)
+            {
+                return NotFound();
+            }
             using var client = new System.Net.Http.HttpClient();
 
             var loginName = _appSettings.LoginName;
@@ -48,6 +53,7 @@ namespace SAF.Controllers
                 var response = await client.GetAsync(requestUrl);
                 var result = await response.Content.ReadAsStringAsync();
 
+
                 var message = new SendSms()
                 {
                     Subject = header,
@@ -58,9 +64,9 @@ namespace SAF.Controllers
                 };
 
                 await _context.Messages.AddAsync(message);
+
             }
          
-            
             await _context.SaveChangesAsync();
 
             return Ok();
@@ -101,6 +107,18 @@ namespace SAF.Controllers
                 _context.Doctors.OrderByDescending(g => g.Id).Skip(skip).Take(12);
 
             return PartialView("_DoctorsPartialView", model);
+        }
+        public IActionResult SearchDoctor(int skip, string name, string profession, string work, string region)
+        {
+            var model =
+                _context.Doctors.OrderByDescending(g => g.Id).Where(p => p.FullName.Contains(name) ||
+                                                                    p.Profession.Contains(profession) ||
+                                                                    p.WorkPlace.Contains(work) ||
+                                                                    p.Region.Contains(region));
+
+            ViewBag.Count = model.Count();
+
+            return PartialView("_SendSmsPartialView", model.Skip(skip).Take(12));
         }
     }
 }

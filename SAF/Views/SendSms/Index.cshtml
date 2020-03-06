@@ -11,6 +11,7 @@
                 <div class="myBtn text-left">
                     <a href="№" class="btn-all" data-toggle="modal" data-target="#myModal">GÖNDƏR</a>
                     <a href="№" class="btn-all btn-success-custom" data-toggle="modal" data-target="#success-modal" style="display:none;">GÖNDƏR</a>
+                    <a href="№" class="btn-all btn-error-custom" data-toggle="modal" data-target="#error-modal" style="display:none;">GÖNDƏR</a>
 
                     <!-- Modal -->
                     <div class="modal fade" id="myModal" role="dialog">
@@ -25,7 +26,9 @@
                                 <div class="modal-body pb-5 custom-modal-doctor">
                                     <form>
                                         <input type="text" placeholder="SMS BAŞLIĞI" id="smsHeader">
+                                        <span class="text-danger danger-header">SMS Başlığı doldurulmayıb.</span>
                                         <textarea name="" rows="5" placeholder="SMS MƏTNİ" id="smsBody"></textarea>
+                                        <span class="text-danger danger-body">SMS Mətni doldurulmayıb.</span>
                                         <input type="submit" value="GÖNDƏR" id="sendSms" data-dismiss="modal">
                                     </form>
                                 </div>
@@ -38,11 +41,24 @@
 
                             <!-- Modal content-->
                             <div class="modal-content">
-                                <div class="modal-header">
 
-                                </div>
                                 <div class="modal-body pb-5 text-center">
-                                    <p>SMS UĞURLA GÖNDƏRİLDİ</p>
+                                    <img src="~/images/error.svg" />
+                                    <p class="mt-2">SMS UĞURLA GÖNDƏRİLDİ</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal fade success-modal" id="error-modal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+
+                                <div class="modal-body pb-5 text-center">
+                                    <img src="~/images/error.png" />
+                                    <p class="mt-2" >SMS MƏLUMATLARINI DÜZGÜN DOLDURUN.</p>
                                 </div>
                             </div>
 
@@ -51,12 +67,55 @@
                 </div>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <div class="search-btn">
-                    <input type="text" placeholder="AXTARIŞ ET">
-                    <div class="image-search">
-                        <img src="~/images/Group 11.png" alt="">
-                    </div>
+                <div class="image-search">
+                    <img src="~/images/Group 11.png" alt="">
                 </div>
+            </div>
+            <div class="filter-wrapper">
+                <p class="p-4" style="color:white;">ƏTRAFLI AXTARIŞ</p>
+                <ul class="filter-main">
+                    <li>
+                        <input id="search-doctor-name" type="text" placeholder="Həkimə görə">
+                    </li>
+                    <li>
+                        <input id="search-doctor-profession" type="text" placeholder="Peşəyə görə">
+
+                        @*<select id="search-doctor-profession">
+                            <option>Peşəyə görə</option>
+                            @foreach (var p in Model)
+                            {
+                                <option>@p.Profession</option>
+
+                            }
+                        </select>*@
+                    </li>
+                    <li>
+                        <input id="search-doctor-work" type="text" placeholder="İş yerinə görə">
+                        @*<select id="search-doctor-work">
+            <option>İşlədiyi yerə görə</option>
+            @foreach (var p in Model)
+            {
+                <option>@p.WorkPlace</option>
+
+            }
+        </select>*@
+                    </li>
+                    <li>
+                        <input id="search-doctor-region" type="text" placeholder="Bölgəyə görə">
+
+                        @*<select id="search-doctor-region">
+            <option>Bölgəyə görə</option>
+            @foreach (var p in Model)
+            {
+                <option>@p.Region</option>
+
+            }
+        </select>*@
+                    </li>
+                    <li>
+                        <a href="#" class="btn-search-doctor">AXTAR</a>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="row mt-4">
@@ -65,7 +124,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th>
-                                <input type="checkbox" class="my-checked">
+                                <input type="checkbox" class="my-checked" style="width:50px;">
 
                                 @*<label class="container-check">
             <input type="checkbox" class="my-checked">
@@ -87,24 +146,25 @@
         </div>
         <div class="row mt-5">
             <div class="col-6">
-                <div class="row-count">
-                    <p>SƏTİRLƏRİN SAYI: 12</p>
-                </div>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <div class="nav-pagination">
-                    <nav aria-label="Page navigation">
+                <div class="nav-pagination load-nav">
+                    <nav aria-label="Page navigation" class="Page">
                         <ul class="pagination" id="pagination"></ul>
                     </nav>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center align-items-center">
+                <a href="#" id="sendLoadMoreSms" style="">DAHA ÇOX</a>
             </div>
         </div>
     </div>
 </div>
 
 @{ 
-
-    double result = ViewBag.Count / 10;
+    double result = ViewBag.Count / 12;
     var a = ViewBag.Count % 10;
     if (a != 0)
     {
@@ -118,7 +178,9 @@
 
 @section Scripts{
     <script type="text/javascript">
-    $(function () {
+
+
+    $(function LoadSms() {
         window.pagObj = $('#pagination').twbsPagination({
             totalPages: @result,
             visiblePages: 6,

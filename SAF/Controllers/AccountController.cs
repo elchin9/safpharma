@@ -38,7 +38,7 @@ namespace SAF.Controllers
 
             if (user == null)
             {
-                ModelState.AddModelError("", "Email or password is invalid");
+                ModelState.AddModelError("", "Email və ya şifrə səhvdir.");
                 return View(LoginViewModel);
             }
 
@@ -47,7 +47,7 @@ namespace SAF.Controllers
 
             if (!signInResult.Succeeded)
             {
-                ModelState.AddModelError("", "Email or password is invalid");
+                ModelState.AddModelError("", "Email və ya şifrə səhvdir.");
                 return View(LoginViewModel);
             }
 

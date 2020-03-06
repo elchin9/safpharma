@@ -18,6 +18,7 @@ namespace SAF.Controllers
         public IActionResult Index()
         {
             ViewBag.Active = "SendSms";
+            //ViewBag.Professions = _context.Doctors.GroupBy(p => p.Profession);
             ViewBag.Count = _context.Doctors.Count();
             return View(_context.Doctors.OrderByDescending(p => p.Id).Take(12));
         }

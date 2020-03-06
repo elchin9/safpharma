@@ -46,6 +46,7 @@ $(document).ready(function(){
 
     $("#sendSms").click(function (e) {
         e.preventDefault();
+
         var data = {};
         var doctors = [];
 
@@ -56,8 +57,8 @@ $(document).ready(function(){
 
         }
 
-        data.header = $("#smsHeader").val();
-        data.body = $("#smsBody").val();
+        data.header = $("#smsHeader").val().trim();
+        data.body = $("#smsBody").val().trim();
         data.doctors = doctors;
 
         $.ajax({
@@ -68,10 +69,67 @@ $(document).ready(function(){
                 $(".btn-success-custom").click();
             },
             error: function (a) {
+                $(".btn-error-custom").click();
             }
         });
 
         $("#smsHeader").val("");
         $("#smsBody").val("");
+    });
+
+    $(document).on("click", ".image-search", function () {
+        $(".filter-wrapper").slideToggle();
+    });
+
+    $(".btn-search-doctor").click(function (e) {
+        skipCount = 12;
+        var name = $("#search-doctor-name").val().trim();
+        var profession = $("#search-doctor-profession").val().trim();
+        var work = $("#search-doctor-work").val().trim();
+        var region = $("#search-doctor-region").val().trim();
+
+        if (name || profession || work || region) {
+            e.preventDefault();
+            $.ajax({
+                url: "/Ajax/SearchDoctor?name=" + name + "&profession=" + profession + "&work=" + work + "&region=" + region,
+                type: "GET",
+                success: function (res) {
+                    $("#pagination").hide();
+                    $("table tbody").html(res);
+                    var totalCount = +$(".smsAjaxCount").val();
+
+                    if (12 >= totalCount) {
+                        $("#sendLoadMoreSms").css("display", "none");
+                    }
+                    else {
+                        $("#sendLoadMoreSms").css("display", "block");
+                    }
+                }
+            }); 
+        }
+    });
+
+    var skipCount = 12;
+    $("#sendLoadMoreSms").click(function (e) {
+        e.preventDefault();
+        var name = $("#search-doctor-name").val().trim();
+        var profession = $("#search-doctor-profession").val().trim();
+        var work = $("#search-doctor-work").val().trim();
+        var region = $("#search-doctor-region").val().trim();
+        var totalCount = +$(".smsAjaxCount").val();
+        $.ajax({
+            url: "/Ajax/SearchDoctor?skip=" + skipCount + "&name=" + name + "&profession=" + profession + "&work=" + work + "&region=" + region,
+            type: "GET",
+            success: function (res) {
+                skipCount += 12;
+                $("table tbody").append(res);
+                if (skipCount >= totalCount) {
+                    $("#sendLoadMoreSms").css("display", "none");
+                }
+                else {
+                    $("#sendLoadMoreSms").css("display", "block");
+                }
+            }
+        });
     });
 });

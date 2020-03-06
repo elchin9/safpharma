@@ -6,6 +6,9 @@
     height: 100vh;
     flex-wrap: wrap;
 }
+.image-search{
+    cursor:pointer;
+}
 .login-wrapper{
     width: 100%;
     display: flex;
@@ -13,6 +16,53 @@
     align-items: center;
     flex-wrap: wrap;
     position: relative;
+}
+.btn-search-doctor{
+    text-decoration:none;
+    color:#E5007C;
+    background: white;
+    border-radius:20px;
+    padding: 5px 20px;
+}
+.btn-search-doctor:hover{
+    color: #E5007C;
+}
+.filter-wrapper{
+    margin-top: 20px;
+    width:100%;
+    background: #E5007C;
+    display:none;
+}
+.filter-wrapper input{
+    border-radius:20px;
+    padding: 10px;
+}
+.filter-main{
+    display:flex;
+    align-items:center;
+    padding:10px;
+}
+.filter-main li{
+    padding:10px;
+    margin-left:20px;
+}
+.filter-main li select{
+    padding: 10px;
+    border-radius: 20px;
+}
+p{
+    margin: 0!important;
+}
+.danger-header, .danger-body{
+    display: none;
+}
+.modal-body img {
+    margin-top: 20px;
+    width: 50px;
+    object-fit:cover;
+}
+.modal-body p{
+    margin-top: 20px;
 }
 .login{
     display: flex;
@@ -305,7 +355,17 @@ a:hover{
       justify-content: center;
       width: 70%;
   }
-  .search-btn .image-search{
+  #sendLoadMoreSms{
+      background: #E5007C;
+      color:white;
+      border-radius:20px;
+      padding: 5px 20px;
+      display:none;
+  }
+  #sendLoadMoreSms:hover{
+      color:white;
+  }
+  .image-search{
       background-color: #E5007C;
       border-radius: 50%;
       width: 29px;

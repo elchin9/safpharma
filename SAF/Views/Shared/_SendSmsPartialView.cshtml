@@ -4,10 +4,14 @@
     Layout = null;
 }
 
-
+<tr style="display:none;">
+<input type="hidden" value="@ViewBag.Count" class="smsAjaxCount"/>
+<td></td>
+</tr>
 @foreach (var d in Model)
 {
     <tr>
+
         <input type="hidden" value="@d.Id" class="doctorId"/>
         <td>
             <input type="checkbox">

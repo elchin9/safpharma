@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-6">
                 <div class="myBtn text-left">
-                   
+
                     <a href="#" class="btn-all-add" data-toggle="modal" data-target="#myModal">HƏKİM ƏLAVƏ ET</a>
                     <a href="#" class="btn-all-update" data-toggle="modal" data-target="#updateModal" onclick="GetUpdate()">REDAKTƏ ET</a>
                     <a href="#" class="btn-all-delete" data-toggle="modal" data-target="#deleteModal">SİL</a>
@@ -25,7 +25,7 @@
                                     <button type="button" class="close-btn" data-dismiss="modal">&times;</button>
                                 </div>
                                 <div class="modal-body pb-5 custom-modal update-model-body">
-                                    <partial name="_CreateDoctorPartialView" model="new Doctor()"/>
+                                    <partial name="_CreateDoctorPartialView" model="new Doctor()" />
                                 </div>
                             </div>
 
@@ -33,7 +33,7 @@
                     </div>
                     <div class="modal fade" id="updateModal" role="dialog">
                         <div class="modal-dialog" style="max-width: 350px;">
-                            
+
                             <!-- Modal content-->
                             <div class="modal-content" style="padding: 0px 20px;">
                                 <div class="modal-header">
@@ -41,7 +41,7 @@
                                     <button type="button" class="close-btn" data-dismiss="modal">&times;</button>
                                 </div>
                                 <div class="modal-body pb-5 custom-modal custom-modal-update">
-                                    <partial name="_UpdateDoctorPartialView" model="Model.FirstOrDefault()"/>
+                                    <partial name="_UpdateDoctorPartialView" model="Model.FirstOrDefault()" />
                                 </div>
                             </div>
 
@@ -56,8 +56,8 @@
                                         SEÇİLƏN BÖLMƏNİ SİLMƏKDƏN
                                         ƏMİNSİNİZMİ ?
                                     </p>
-                                    <div class="buttons-modal">
-                                        <a  href="#" class="btn-all-yes"  onclick="DeleteDoctor()" data-dismiss="modal">BƏLİ</a>
+                                    <div class="buttons-modal mt-3">
+                                        <a href="#" class="btn-all-yes" onclick="DeleteDoctor()" data-dismiss="modal">BƏLİ</a>
                                         <a href="#" class="btn-all-no" data-dismiss="modal">XEYR</a>
                                     </div>
                                 </div>
@@ -67,12 +67,55 @@
                 </div>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <div class="search-btn">
-                    <input type="text" placeholder="AXTARIŞ ET">
-                    <div class="image-search">
-                        <img src="~/images/Group 11.png" alt="">
-                    </div>
+                <div class="image-search">
+                    <img src="~/images/Group 11.png" alt="">
                 </div>
+            </div>
+            <div class="filter-wrapper">
+                <p class="p-4" style="color:white;">ƏTRAFLI AXTARIŞ</p>
+                <ul class="filter-main">
+                    <li>
+                        <input id="search-doctor-name" type="text" placeholder="Həkimə görə">
+                    </li>
+                    <li>
+                        <input id="search-doctor-profession" type="text" placeholder="Peşəyə görə">
+
+                        @*<select id="search-doctor-profession">
+                        <option>Peşəyə görə</option>
+                        @foreach (var p in Model)
+                        {
+                            <option>@p.Profession</option>
+
+                        }
+                    </select>*@
+                    </li>
+                    <li>
+                        <input id="search-doctor-work" type="text" placeholder="İş yerinə görə">
+                        @*<select id="search-doctor-work">
+                        <option>İşlədiyi yerə görə</option>
+                        @foreach (var p in Model)
+                        {
+                            <option>@p.WorkPlace</option>
+
+                        }
+                    </select>*@
+                    </li>
+                    <li>
+                        <input id="search-doctor-region" type="text" placeholder="Bölgəyə görə">
+
+                        @*<select id="search-doctor-region">
+                        <option>Bölgəyə görə</option>
+                        @foreach (var p in Model)
+                        {
+                            <option>@p.Region</option>
+
+                        }
+                    </select>*@
+                    </li>
+                    <li>
+                        <a href="#" class="btn-search-doctor">AXTAR</a>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="row mt-4">
@@ -95,9 +138,6 @@
         </div>
         <div class="row mt-5">
             <div class="col-6">
-                <div class="row-count">
-                    <p>SƏTİRLƏRİN SAYI: 12</p>
-                </div>
             </div>
             <div class="col-6 d-flex justify-content-end">
                 <div class="nav-pagination">
