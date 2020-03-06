@@ -1,23 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using SAF.DAL;
 using SAF.Models;
+using SAF.ViewModel;
 
 namespace SAF.Controllers
 {
     public class DoctorController : Controller
     {
         private readonly Db_Saf _context;
+        private readonly IHostingEnvironment _env;
 
-        public DoctorController(Db_Saf context)
+        public DoctorController(Db_Saf context, IHostingEnvironment env)
         {
             _context = context;
+            _env = env;
         }
         public IActionResult Index()
         {
@@ -185,9 +191,57 @@ namespace SAF.Controllers
 
         }
 
-        public IActionResult Import(HttpPostedFileBase) 
+        public IActionResult ImportExcel()
+        {
+            return View();
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ImportExcel(ExcelViewModel model) 
         {
 
+            if (model.File == null || model.File.Length <= 0)
+            {
+                ModelState.AddModelError("File", "Xaiş olunur fayl yükləyin");
+                return View(model);
+            }
+
+            if (!Path.GetExtension(model.File.FileName).Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
+            {
+                ModelState.AddModelError("File", "Xaiş olunur düzgün fayl yükləyin. (Excel)");
+                return View(model);
+            }
+
+            var list = new List<Doctor>();
+
+            using (var stream = new MemoryStream())
+            {
+                await model.File.CopyToAsync(stream);
+
+                using (var package = new ExcelPackage(stream))
+                {
+                    ExcelWorksheet workSheet = package.Workbook.Worksheets[0];
+                    var totalRows = workSheet.Dimension.Rows;
+
+                    for (int i = 2; i <= totalRows; i++)
+                    {
+                        list.Add(new Doctor
+                        {
+                            FullName = workSheet.Cells[i, 1].Value.ToString(),
+                            Profession = workSheet.Cells[i, 2].Value.ToString(),
+                            WorkPlace = workSheet.Cells[i, 3].Value.ToString(),
+                            Region = workSheet.Cells[i, 4].Value.ToString(),
+                            MobileNumber = workSheet.Cells[i, 5].Value.ToString()
+                        });
+                    }
+
+                    _context.Doctors.AddRange(list);
+                    _context.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index", "Doctor");
         }
     }
 }

@@ -77,8 +77,16 @@ $(document).ready(function(){
         $("#smsBody").val("");
     });
 
+    $(document).on("click", ".uploadImage", function () {
+        $("#uploadInput").click();
+    });
+
     $(document).on("click", ".image-search", function () {
         $(".filter-wrapper").slideToggle();
+    });
+
+    $('#uploadInput').change(function (e) {
+        $(".file-view").show();
     });
 
     $(".btn-search-doctor").click(function (e) {

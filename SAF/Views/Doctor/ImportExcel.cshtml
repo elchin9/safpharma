@@ -1,0 +1,32 @@
+﻿
+@{
+    @model ExcelViewModel
+    ViewData["Title"] = "ImportExcel";
+}
+
+    <div class="right-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>Excel formatında yeni həkimlər əlavə et</p>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="uploadArea">
+                            <div class="uploadImage d-flex justify-content-center align-items-center">
+                                <img src="~/images/upload.png" />
+                            </div>
+                        </div>
+                        <input type="file" asp-for="File" id="uploadInput" />
+                        <span class="file-view text-right">Fayl seçilib.</span>
+                        <span asp-validation-for="File" class="text-danger"></span>
+                        <input type="submit" class="btn-all mt-3" value="ƏLAVƏ ET">
+                    </form>
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
+    </div>
