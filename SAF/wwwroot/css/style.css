@@ -366,11 +366,6 @@ a:hover{
       color:white;
   }
   .image-search{
-      background-color: #E5007C;
-      border-radius: 50%;
-      width: 29px;
-      height: 27px;
-      padding-left: 4px;
       cursor: pointer;
   }
   .page-item.active .page-link{

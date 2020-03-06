@@ -5,26 +5,44 @@
 }
 
 <tr style="display:none;">
-<input type="hidden" value="@ViewBag.Count" class="smsAjaxCount"/>
-<td></td>
+    <input type="hidden" value="@ViewBag.Count" class="smsAjaxCount" />
+    <td></td>
 </tr>
-@foreach (var d in Model)
+@if (ViewBag.Type == 2)
 {
-    <tr>
+    @foreach (var d in Model)
+    {
+        <tr>
 
-        <input type="hidden" value="@d.Id" class="doctorId"/>
-        <td>
-            <input type="checkbox">
+            <input type="hidden" value="@d.Id" class="doctorId" />
+            <td>
+                <input type="checkbox">
 
-            @*<label class="container-check">
-            <input type="checkbox">
-            <span class="checkmark-two"></span>
-        </label>*@
-        </td>
-        <td>@d.FullName</td>
-        <td>@d.Profession</td>
-        <td>@d.WorkPlace</td>
-        <td>@d.Region</td>
-        <td>@d.MobileNumber</td>
-    </tr>
+                @*<label class="container-check">
+                        <input type="checkbox">
+                        <span class="checkmark-two"></span>
+                    </label>*@
+            </td>
+            <td>@d.FullName</td>
+            <td>@d.Profession</td>
+            <td>@d.WorkPlace</td>
+            <td>@d.Region</td>
+            <td>@d.MobileNumber</td>
+        </tr>
+    }
+}
+else if (ViewBag.Type == 1)
+{
+    @foreach (var d in Model)
+    {
+        <tr>
+
+            <input type="hidden" value="@d.Id" class="doctorId" />
+            <td>@d.FullName</td>
+            <td>@d.Profession</td>
+            <td>@d.WorkPlace</td>
+            <td>@d.Region</td>
+            <td>@d.MobileNumber</td>
+        </tr>
+    }
 }

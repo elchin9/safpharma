@@ -67,13 +67,17 @@
                 </div>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <div class="image-search">
-                    <img src="~/images/Group 11.png" alt="">
-                </div>
+                <a class="btn-all d-flex justify-content-center align-items-center ml-2 image-search mr-2">
+                    <p style="color:white;">FILTER</p>
+                    <img src="~/images/Group 11.png" alt="" class="ml-1">
+                </a>
             </div>
             <div class="filter-wrapper">
                 <p class="p-4" style="color:white;">ƏTRAFLI AXTARIŞ</p>
                 <ul class="filter-main">
+                    <li style="display:none;">
+                        <input type="hidden" value="2" id="search-doctor-type" />
+                    </li>
                     <li>
                         <input id="search-doctor-name" type="text" placeholder="Həkimə görə">
                     </li>
@@ -81,36 +85,36 @@
                         <input id="search-doctor-profession" type="text" placeholder="Peşəyə görə">
 
                         @*<select id="search-doctor-profession">
-                            <option>Peşəyə görə</option>
-                            @foreach (var p in Model)
-                            {
-                                <option>@p.Profession</option>
+                <option>Peşəyə görə</option>
+                @foreach (var p in Model)
+                {
+                    <option>@p.Profession</option>
 
-                            }
-                        </select>*@
+                }
+            </select>*@
                     </li>
                     <li>
                         <input id="search-doctor-work" type="text" placeholder="İş yerinə görə">
                         @*<select id="search-doctor-work">
-            <option>İşlədiyi yerə görə</option>
-            @foreach (var p in Model)
-            {
-                <option>@p.WorkPlace</option>
+                <option>İşlədiyi yerə görə</option>
+                @foreach (var p in Model)
+                {
+                    <option>@p.WorkPlace</option>
 
-            }
-        </select>*@
+                }
+            </select>*@
                     </li>
                     <li>
                         <input id="search-doctor-region" type="text" placeholder="Bölgəyə görə">
 
                         @*<select id="search-doctor-region">
-            <option>Bölgəyə görə</option>
-            @foreach (var p in Model)
-            {
-                <option>@p.Region</option>
+                <option>Bölgəyə görə</option>
+                @foreach (var p in Model)
+                {
+                    <option>@p.Region</option>
 
-            }
-        </select>*@
+                }
+            </select>*@
                     </li>
                     <li>
                         <a href="#" class="btn-search-doctor">AXTAR</a>

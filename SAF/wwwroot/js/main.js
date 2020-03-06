@@ -87,11 +87,12 @@ $(document).ready(function(){
         var profession = $("#search-doctor-profession").val().trim();
         var work = $("#search-doctor-work").val().trim();
         var region = $("#search-doctor-region").val().trim();
+        var type = +$("#search-doctor-type").val().trim();
 
         if (name || profession || work || region) {
             e.preventDefault();
             $.ajax({
-                url: "/Ajax/SearchDoctor?name=" + name + "&profession=" + profession + "&work=" + work + "&region=" + region,
+                url: "/Ajax/SearchDoctor?name=" + name + "&profession=" + profession + "&work=" + work + "&region=" + region + "&type=" + type,
                 type: "GET",
                 success: function (res) {
                     $("#pagination").hide();
@@ -117,8 +118,10 @@ $(document).ready(function(){
         var work = $("#search-doctor-work").val().trim();
         var region = $("#search-doctor-region").val().trim();
         var totalCount = +$(".smsAjaxCount").val();
+        var type = +$("#search-doctor-type").val().trim();
+
         $.ajax({
-            url: "/Ajax/SearchDoctor?skip=" + skipCount + "&name=" + name + "&profession=" + profession + "&work=" + work + "&region=" + region,
+            url: "/Ajax/SearchDoctor?skip=" + skipCount + "&name=" + name + "&profession=" + profession + "&work=" + work + "&region=" + region + "&type=" + type,
             type: "GET",
             success: function (res) {
                 skipCount += 12;

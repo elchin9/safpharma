@@ -98,6 +98,8 @@ namespace SAF.Controllers
             var model =
                 _context.Doctors.OrderByDescending(g => g.Id).Skip(skip).Take(12);
 
+            ViewBag.Type = 2;
+
             return PartialView("_SendSmsPartialView", model);
         }
 
@@ -108,7 +110,7 @@ namespace SAF.Controllers
 
             return PartialView("_DoctorsPartialView", model);
         }
-        public IActionResult SearchDoctor(int skip, string name, string profession, string work, string region)
+        public IActionResult SearchDoctor(int skip, string name, string profession, string work, string region, int type)
         {
             var model =
                 _context.Doctors.OrderByDescending(g => g.Id).Where(p => p.FullName.Contains(name) ||
@@ -117,6 +119,7 @@ namespace SAF.Controllers
                                                                     p.Region.Contains(region));
 
             ViewBag.Count = model.Count();
+            ViewBag.Type = type;
 
             return PartialView("_SendSmsPartialView", model.Skip(skip).Take(12));
         }

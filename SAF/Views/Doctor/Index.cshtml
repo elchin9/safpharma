@@ -10,9 +10,9 @@
             <div class="col-6">
                 <div class="myBtn text-left">
 
-                    <a href="#" class="btn-all-add" data-toggle="modal" data-target="#myModal">HƏKİM ƏLAVƏ ET</a>
-                    <a href="#" class="btn-all-update" data-toggle="modal" data-target="#updateModal" onclick="GetUpdate()">REDAKTƏ ET</a>
-                    <a href="#" class="btn-all-delete" data-toggle="modal" data-target="#deleteModal">SİL</a>
+                    <a href="#" class="btn-all-add" data-toggle="modal" data-target="#myModal" style="margin-top: 10px;">HƏKİM ƏLAVƏ ET</a>
+                    <a href="#" class="btn-all-update" data-toggle="modal" data-target="#updateModal" onclick="GetUpdate()" style="margin-top: 10px;">REDAKTƏ ET</a>
+                    <a href="#" class="btn-all-delete" data-toggle="modal" data-target="#deleteModal" style="margin-top: 10px;">SİL</a>
 
                     <!-- Modal -->
                     <div class="modal fade" id="myModal" role="dialog">
@@ -67,55 +67,64 @@
                 </div>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <div class="image-search">
-                    <img src="~/images/Group 11.png" alt="">
+                <div style="margin-top: 10px;">
+                    <a asp-controller="Doctor" asp-action="ExcelExport" class="btn-all">YÜKLƏ</a>
                 </div>
+                <a class="btn-all d-flex justify-content-center align-items-center ml-2 image-search mr-2">
+                    <p style="color:white;">FILTER</p>
+                    <img src="~/images/Group 11.png" alt="" class="ml-1">
+                </a>
             </div>
-            <div class="filter-wrapper">
-                <p class="p-4" style="color:white;">ƏTRAFLI AXTARIŞ</p>
-                <ul class="filter-main">
-                    <li>
-                        <input id="search-doctor-name" type="text" placeholder="Həkimə görə">
-                    </li>
-                    <li>
-                        <input id="search-doctor-profession" type="text" placeholder="Peşəyə görə">
+            <div class="col-12">
+                <div class="filter-wrapper">
+                    <p class="p-4" style="color:white;">ƏTRAFLI AXTARIŞ</p>
+                    <ul class="filter-main">
+                        <li style="display:none;">
+                            <input type="hidden" value="1" id="search-doctor-type"/>
+                        </li>
+                        <li>
+                            <input id="search-doctor-name" type="text" placeholder="Həkimə görə">
+                        </li>
+                        <li>
+                            <input id="search-doctor-profession" type="text" placeholder="Peşəyə görə">
 
-                        @*<select id="search-doctor-profession">
-                        <option>Peşəyə görə</option>
-                        @foreach (var p in Model)
-                        {
-                            <option>@p.Profession</option>
+                            @*<select id="search-doctor-profession">
+                                <option>Peşəyə görə</option>
+                                @foreach (var p in Model)
+                                {
+                                    <option>@p.Profession</option>
 
-                        }
-                    </select>*@
-                    </li>
-                    <li>
-                        <input id="search-doctor-work" type="text" placeholder="İş yerinə görə">
-                        @*<select id="search-doctor-work">
-                        <option>İşlədiyi yerə görə</option>
-                        @foreach (var p in Model)
-                        {
-                            <option>@p.WorkPlace</option>
+                                }
+                            </select>*@
+                        </li>
+                        <li>
+                            <input id="search-doctor-work" type="text" placeholder="İş yerinə görə">
+                            @*<select id="search-doctor-work">
+                                <option>İşlədiyi yerə görə</option>
+                                @foreach (var p in Model)
+                                {
+                                    <option>@p.WorkPlace</option>
 
-                        }
-                    </select>*@
-                    </li>
-                    <li>
-                        <input id="search-doctor-region" type="text" placeholder="Bölgəyə görə">
+                                }
+                            </select>*@
+                        </li>
+                        <li>
+                            <input id="search-doctor-region" type="text" placeholder="Bölgəyə görə">
 
-                        @*<select id="search-doctor-region">
-                        <option>Bölgəyə görə</option>
-                        @foreach (var p in Model)
-                        {
-                            <option>@p.Region</option>
+                            @*<select id="search-doctor-region">
+                                <option>Bölgəyə görə</option>
+                                @foreach (var p in Model)
+                                {
+                                    <option>@p.Region</option>
 
-                        }
-                    </select>*@
-                    </li>
-                    <li>
-                        <a href="#" class="btn-search-doctor">AXTAR</a>
-                    </li>
-                </ul>
+                                }
+                            </select>*@
+                        </li>
+                        <li>
+                            <a href="#" class="btn-search-doctor">AXTAR</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="row mt-4">
@@ -145,6 +154,11 @@
                         <ul class="pagination" id="pagination"></ul>
                     </nav>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center align-items-center">
+                <a href="#" id="sendLoadMoreSms" style="">DAHA ÇOX</a>
             </div>
         </div>
     </div>
